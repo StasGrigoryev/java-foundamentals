@@ -3,6 +3,8 @@ package FuctionalProg.streams;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -62,7 +64,8 @@ public class Main {
         departments.add(hr);
         departments.add(accounting);
 
-        //following produces a stream containing all employees in all departments
+        // following produces a stream containing all
+        // employees in all departments
         departments.stream()
                 .flatMap(d -> d.getEmployees().stream())
                 .forEach(System.out::println);
@@ -83,26 +86,20 @@ public class Main {
                 .map(String::toUpperCase)
                 .filter(n -> n.startsWith("G"))
                 .sorted()
-                .collect(ArrayList::new,ArrayList::add,ArrayList::addAll);
+                .collect(ArrayList::new, ArrayList::add, ArrayList::addAll);
+
+        Map<Integer,List<Employee>> groupedByAge = departments.stream()
+                .flatMap(department -> department.getEmployees().stream())
+                .collect(Collectors.groupingBy(Employee::getAge));
 
         departments.stream()
                 .flatMap(d -> d.getEmployees().stream())
                 .reduce((e1, e2) -> e1.getAge() < e2.getAge() ? e1 : e2)
                 .ifPresent(System.out::println);
 
+
     }
 
-    Predicate<Integer> isOdd = i -> i % 2 != 0;
-
-    public static String everySecondChar(String source, Predicate<Integer> p) {
-        StringBuilder sb = new StringBuilder();
-        for(int i = 0; i < source.length(); i++) {
-            if(p.test(i)) {
-                sb.append(source).charAt(i);
-            }
-        }
-        return sb.toString();
-    }
 
 
 

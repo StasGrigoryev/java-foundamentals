@@ -53,46 +53,50 @@ public class Main {
         String upperName = toUpperCase.apply(employees.get(3));
         System.out.println(concatAge.apply(upperName, employees.get(1)));
 
-//        // we implemented interface Runnable and his only method run()
-//        // so returned type is Runnable? not void?
-//        // Does that mean that returned type is defined by the interface
-//        // to which the method belongs?
-//        Runnable r = () -> System.out.println("Hello!");
+        // we implemented interface Runnable and his only method run()
+        // so returned type is Runnable? not void?
+        // Does that mean that returned type is defined by the interface
+        // to which the method belongs?
+        Runnable r = () -> System.out.println("Hello!");
 
         IntUnaryOperator incBy5 = i -> i + 5;
         System.out.println(incBy5.applyAsInt(10 ));
 //
-//        BinaryOperator<Integer> addition = (x, y) -> x + y;
-//        // wtf is this? idk yet, but I'll find out
-//        BinaryOperator<Integer> addition2 = Integer::sum;
+        BinaryOperator<Integer> addition = (x, y) -> x + y;
+        // wtf is this? idk yet, but I'll find out
+        BinaryOperator<Integer> addition2 = Integer::sum;
 
-//        IntPredicate older21 = i -> i > 21;
-//        IntPredicate younger40 = i -> i < 40;
-//        //using "and" method to check both conditions
-//        //first we negating result of the first condition
-//        System.out.println(older21.negate().and(younger40).test(18));
-//
-//
-//        printByAge( "Employees over 21", employees, emp -> emp.getAge() > 21);
-//        printByAge( "Employees 30 and over", employees, emp -> emp.getAge() >= 30);
+        IntPredicate older21 = i -> i > 21;
+        IntPredicate younger40 = i -> i < 40;
+        //using "and" method to check both conditions
+        //first we negating result of the first condition
+        System.out.println(older21.negate().and(younger40).test(18));
 
 
-//
-//        Comparator<Employee> compareByName = (emp1,emp2) ->
-//                emp1.getName().compareTo(emp2.getName());
-//        //still don't know this "::" syntax, intellij suggestion
-//        Comparator<Employee> compareByAge = Comparator.comparingInt(Employee::getAge);
-//        Collections.sort(employees, Comparator.comparing(Employee::getName));
-//        Random random = new Random();
-//        Supplier<Integer> randSup = () -> random.nextInt(100);
-//        for (int i = 0; i < 10; i ++) {
-//            System.out.println(randSup.get());
-//        }
-//
-//        employees.forEach(emp -> {
-//            String lastName = emp.getName().substring(emp.getName().indexOf(' ')+1);
-//            System.out.println("The last name is " + lastName);
-//        });
+        printByAge( "Employees over 21", employees, emp -> emp.getAge() > 21);
+        printByAge( "Employees 30 and over", employees, emp -> emp.getAge() >= 30);
+
+
+
+        Comparator<Employee> compareByName = (emp1,emp2) ->
+                emp1.getName().compareTo(emp2.getName());
+        //still don't know this "::" syntax, intellij suggestion
+        Comparator<Employee> compareByAge = Comparator.comparingInt(Employee::getAge);
+
+
+        Collections.sort(employees, Comparator.comparing(Employee::getName));
+
+
+        Random random = new Random();
+        Supplier<Integer> randSup = () -> random.nextInt(100);
+        for (int i = 0; i < 10; i ++) {
+            System.out.println(randSup.get());
+        }
+
+        employees.forEach(emp -> {
+            String lastName1 = emp.getName().substring(emp.getName().indexOf(' ')+1);
+            System.out.println("The last name is " + lastName1);
+        });
 
 
 
