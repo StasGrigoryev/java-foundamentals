@@ -1,4 +1,4 @@
-package collections.Adventure;
+package collections.maps.Adventure;
 
 import java.util.*;
 
